@@ -1,3 +1,8 @@
+<?php
+
+require_once __DIR__ . '/includes/bootstrap.php';
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -93,6 +98,13 @@
 <div class="register-form">
     <h2>Register</h2>
 
+    <?php if (isset($_SESSION['flash'])): ?>
+        <?php foreach ($_SESSION['flash'] as $message): ?>
+            <div class="error"><?php echo e($message['message']); ?></div>
+        <?php endforeach; ?>
+        <?php unset($_SESSION['flash']); ?>
+    <?php endif; ?>
+
     <?php if (isset($_GET['error'])): ?>
         <div class="error">
             <?php echo htmlspecialchars($_GET['error']); ?>
@@ -100,6 +112,8 @@
     <?php endif; ?>
 
     <form method="post" action="process_register.php">
+
+        <?php echo csrf_field(); ?>
 
         <div class="form-group">
             <label>Full Name *</label>
@@ -113,7 +127,12 @@
 
         <div class="form-group">
             <label>Password *</label>
-            <input type="password" name="password" placeholder="Enter your password" required>
+            <input type="password" name="password" placeholder="Enter your password" minlength="12" required>
+        </div>
+
+        <div class="form-group">
+            <label>Confirm Password *</label>
+            <input type="password" name="confirm" placeholder="Confirm your password" minlength="12" required>
         </div>
 
         <div class="form-group">
@@ -123,7 +142,7 @@
     </form>
 
     <p style="text-align: center;">
-        <a href="index.php">Back to Home</a>
+        <a href="index.php">Back to Home</a> | <a href="login.php">Login</a>
     </p>
 
 </div>
