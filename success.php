@@ -1,3 +1,8 @@
+<?php
+
+require_once __DIR__ . '/includes/bootstrap.php';
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -81,8 +86,11 @@
 
     <p>Your account has been created successfully. Welcome to MyShop!</p>
 
+    <p>You can now sign in to your account.</p>
+
     <div style="margin-top: 30px;">
         <a href="index.php" class="btn">Go Back to Home</a>
+        <a href="login.php" class="btn">Login</a>
 
         <a href="register.php" class="btn btn-success">
             Register Another User
