@@ -1,0 +1,1 @@
+<?php require_once __DIR__.'/includes/bootstrap.php';header('Content-Type: application/json');try{one('SELECT 1 AS alive');echo json_encode(['status'=>'ok']);}catch(Throwable $e){http_response_code(503);echo json_encode(['status'=>'unavailable']);}
